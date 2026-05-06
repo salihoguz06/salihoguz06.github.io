@@ -214,6 +214,17 @@ const playlist = [
                 reasonEl.style.opacity = 1;
             }, 400); 
         }
+
+        // --- 15. SCROLL INDICATOR FADE OUT ---
+        window.addEventListener('scroll', () => {
+            const indicator = document.getElementById('scrollIndicator');
+            // Kullanıcı sayfayı 50 pikselden fazla aşağı kaydırırsa oku gizle
+            if (window.scrollY > 50) {
+                indicator.style.opacity = '0';
+            } else {
+                indicator.style.opacity = '0.8';
+            }
+        });
         
         // Fonksiyonu sayfa açılır açılmaz çalıştır
         setTimeGreeting();
