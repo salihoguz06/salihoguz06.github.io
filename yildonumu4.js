@@ -1,0 +1,360 @@
+
+        // --- 1. SYSTEM SETTINGS & DATES ---
+        const startDay = new Date("2025-04-26T04:00:00");
+        const warsawFlightUnlockDate = new Date("2026-05-15T00:00:00");
+
+        // --- 2. CURSOR TRACKING ---
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+        });
+
+        // --- 3. TYPEWRITER ---
+        function initTypewriter(el) {
+            const text = el.getAttribute('data-text'); el.innerText = '';
+            text.split("").forEach((char, i) => {
+                const span = document.createElement("span");
+                span.innerText = char === " " ? "\u00A0" : char;
+                span.className = "letter"; el.appendChild(span);
+                setTimeout(() => span.classList.add("visible"), i * 50);
+            });
+        }
+        const obs = new IntersectionObserver((es) => {
+            es.forEach(e => { if (e.isIntersecting) { initTypewriter(e.target); obs.unobserve(e.target); }});
+        }, { threshold: 0.4 });
+        document.querySelectorAll('.soft-typewriter').forEach(el => obs.observe(el));
+
+        // --- 4. COUNTER ---
+        setInterval(() => {
+            const diff = new Date() - startDay;
+            document.getElementById("days").innerText = Math.floor(diff / 86400000);
+            document.getElementById("hours").innerText = String(Math.floor((diff / 3600000) % 24)).padStart(2, '0');
+            document.getElementById("mins").innerText = String(Math.floor((diff / 60000) % 60)).padStart(2, '0');
+            document.getElementById("secs").innerText = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+        }, 1000);
+
+        // --- 5. GALLERY DATA ---
+        const galleryData = {
+            'lizbon': [
+                { img: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=1200', text: 'Lost in the streets of Lisbon on that windy day...' },
+                { img: 'https://images.unsplash.com/photo-1516589174184-c68526617af0?w=1200', text: 'Every view is beautiful with you, my love.' },
+                { img: 'https://images.unsplash.com/photo-1516589174184-c68526617af0?w=1200', text: 'Another memory sealed forever.' }
+            ],
+            'polonya': [
+                { img: 'https://images.unsplash.com/photo-1590502593747-42a996111115?w=1200', text: 'Your smile warming me in the freezing Warsaw winter.' },
+                { img: 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=1200', text: 'Warm memories in a cold land.' }
+            ]
+        };
+
+        let currentAlbum = '';
+        let currentIndex = 0;
+
+        function openGallery(album) {
+            currentAlbum = album;
+            currentIndex = 0;
+            updateModal();
+            document.getElementById('galleryModal').classList.add('open');
+        }
+
+        function closeGallery() { document.getElementById('galleryModal').classList.remove('open'); }
+
+        function updateModal() {
+            const data = galleryData[currentAlbum][currentIndex];
+            document.getElementById('modalImg').src = data.img;
+            document.getElementById('modalText').innerText = data.text;
+        }
+
+        function nextSlide() { currentIndex = (currentIndex + 1) % galleryData[currentAlbum].length; updateModal(); }
+        function prevSlide() { currentIndex = (currentIndex - 1 + galleryData[currentAlbum].length) % galleryData[currentAlbum].length; updateModal(); }
+
+        // --- 6. WARSAW & LOCK CONTROL ---
+        function checkWarsawFlight() {
+            const now = new Date();
+            if (now < warsawFlightUnlockDate) {
+                alert("Signal Weak, My Love! 🛸\n\nAccess to May 16th Warsaw flight tracking will open on May 15th. Until then, it stays locked!");
+            } else {
+                window.open("https://www.google.com/search?q=Warsaw+Flight+Tracking+16+May+2026", "_blank");
+            }
+        }
+
+        function checkUnlockDate(date, title) {
+            const diff = new Date(date) - new Date();
+            if(diff <= 0) alert(title + " is now unlocked!");
+            else alert("Be patient, engineer... 🛠️\n\n" + title + " will unlock in " + Math.ceil(diff/86400000) + " days. ❤️");
+        }
+
+        // --- 8. BALLOONS, SCRATCH & STALK ---
+        async function releaseBalloon() {
+            const input = document.getElementById('wishInput');
+            const wishText = input.value.trim();
+            
+            if(wishText === "") return; // Boşsa hiçbir şey yapma
+
+            // 1. Önce görsel şöleni başlatalım (Balon uçsun)
+            const b = document.createElement('div'); 
+            b.className = 'balloon'; 
+            b.innerHTML = '❤';
+            b.style.left = (Math.random() * 90 + 5) + '%';
+            document.body.appendChild(b);
+            
+            input.value = ""; // Kutuyu temizle
+            setTimeout(() => b.remove(), 9000); // 9 saniye sonra balonu sil
+
+            // 2. Dileği e-posta olarak gönder (Arka planda sessizce)
+            try {
+                await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                    },
+                    body: JSON.stringify({
+                        access_key: "df634fe3-2117-4a05-8ed7-4304d46bc27d", // Gelen kodu buraya yapıştır
+                        subject: "🎈 Sevgilinden Yeni Bir Dilek Var!", // Mailin başlığı
+                        message: wishText, // Sevgilinin yazdığı mesaj
+                    }),
+                });
+            } catch (error) {
+                console.error("Dilek uçarken bir rüzgara takıldı:", error);
+            }
+        }
+
+        // --- 9. UÇAN MİNİK KALPLER ---
+        function spawnMiniHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'mini-heart';
+            heart.innerHTML = '❤';
+            
+            // Ekranın sağ-sol ekseninde rastgele bir yerinden çıksın
+            heart.style.left = Math.random() * 100 + 'vw';
+            
+            // Çıkış süresi ve boyutu da her kalp için rastgele olsun ki doğal dursun
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's'; // 5 ile 8 saniye arası
+            heart.style.fontSize = (Math.random() * 10 + 10) + 'px'; // 10px ile 20px arası
+            
+            document.body.appendChild(heart);
+            
+            // Uçuşu biten kalbi koddan sil (Siteyi kasmasın diye)
+            setTimeout(() => heart.remove(), 12000); 
+        }
+        // Her 800 milisaniyede bir yeni kalp üret
+        setInterval(spawnMiniHeart, 800);
+
+
+        // --- 11. PLAK VE ÇALMA LİSTESİ (HİKAYELİ KUTU) ---
+const playlist = [
+    { 
+        src: "zeki-muren-simdi-uzaklardasin_Mp3.Sevir.Az.mp3", // Buraya 1. MP3 linki
+        title: "Bizim Melodimiz", 
+        meaning: "Beşiktaş'ta o ilk kahveyi içerken fonda çalan, her duyduğumda senin gülüşünü hatırlatan o şarkı." 
+    },
+    { 
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", // Buraya 2. MP3 linki
+        title: "Ritim ve Ateş", 
+        meaning: "Polonya'nın dondurucu soğuğunda bizi dans ettiren, enerjimizi hiç bitirmeyen o muazzam ritim." 
+    },
+    { 
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", // Buraya 3. MP3 linki
+        title: "Zamanın Ötesinde", 
+        meaning: "Lizbon'un dar sokaklarında kaybolduğumuzda çalan o huzur dolu tını..." 
+    }
+];
+
+        function setTimeGreeting() {
+            const hour = new Date().getHours();
+            const greetingEl = document.getElementById('time-greeting');
+            let message = "";
+
+            if (hour >= 5 && hour < 12) {
+                message = "Günaydın her şeyim, bugün de seni dünden çok seviyorum...";
+            } else if (hour >= 12 && hour < 18) {
+                message = "Günün en güzel saatleri seninle geçenlerdir sevgilim...";
+            } else if (hour >= 18 && hour < 23) {
+                message = "İyi akşamlar sevgilim, kalbim yine seninle...";
+            } else {
+                message = "İyi geceler gökyüzüm, rüyalarda buluşalım...";
+            }
+            greetingEl.setAttribute('data-text', message); // Mesajı animasyon verisine yazar
+            initTypewriter(greetingEl); // Diğer yazılardaki gibi daktilo animasyonunu başlatır
+        }
+
+        // --- 14. I LOVE YOU BECAUSE GENERATOR ---
+        const reasons = [
+            "Your smile instantly warms up even the coldest day in Poland.",
+            "I've engraved the moment you held my hand while getting lost in the narrow streets of Lisbon into my heart.",
+            "You solve even the most complex equations of my life with just a single glance.",
+            "When I look into your eyes, I feel like the whole world stops and it's just the two of us.",
+            "You are not just my lover, but my best friend and my greatest travel companion.",
+            "Hearing your voice gives me endless peace, even after the most exhausting day.",
+            "The thought of waking up to a new life with you every morning keeps me tied to the future.",
+            "I am in love with those moments when we can be childish together and share the most sincere laughs.",
+            "I feel like the luckiest man in the world when I'm by your side.",
+            "When our hands meet, everything else loses its meaning."
+        ];
+
+        let lastReasonIndex = -1; 
+
+        function generateReason() {
+            const reasonEl = document.getElementById('random-reason');
+            let randomIndex;
+            
+            do {
+                randomIndex = Math.floor(Math.random() * reasons.length);
+            } while (randomIndex === lastReasonIndex);
+            
+            lastReasonIndex = randomIndex;
+            
+            reasonEl.style.opacity = 0;
+            
+            setTimeout(() => {
+                reasonEl.innerText = "“" + reasons[randomIndex] + "”";
+                reasonEl.style.opacity = 1;
+            }, 400); 
+        }
+        
+        // Fonksiyonu sayfa açılır açılmaz çalıştır
+        setTimeGreeting();
+
+        function startStalking() {
+            const overlay = document.getElementById('stalk-overlay');
+            const radarScreen = document.getElementById('radar-screen');
+            const locationResult = document.getElementById('location-result');
+            const status = document.getElementById('status-text');
+
+            // 1. Ekranları başlangıç durumuna sıfırla (Kapatıp tekrar açarsa diye)
+            radarScreen.style.display = 'block';
+            locationResult.style.display = 'none';
+            status.innerText = "SCANNING GPS...";
+            
+            // 2. Arayüzü göster
+            overlay.style.display = 'flex';
+
+            // 3. Yazı animasyonları
+            const logs = ["CONNECTING TO SATELLITE...", "GPS DATA ANALYSIS...", "TARGET LOCKED!"];
+            logs.forEach((log, i) => { 
+                setTimeout(() => { 
+                    status.innerText = log; 
+                }, (i + 1) * 900); 
+            });
+
+            // 4. Radar bittikten sonra sonuç ekranını göster
+            setTimeout(() => {
+                radarScreen.style.display = 'none';
+                locationResult.style.display = 'block';
+            }, 3500); // Animasyonlarla uyumlu olması için 3.5 saniyeye çektim
+        }
+
+        function stopStalking() { 
+            document.getElementById('stalk-overlay').style.display = 'none'; 
+        }
+
+let currentSongIndex = -1; 
+const audioEl = document.getElementById("bgMusic");
+const vinylBtn = document.getElementById("vinyl-btn");
+const meaningBox = document.getElementById("meaning-box");
+const trackTitle = document.getElementById("track-title");
+const trackMeaning = document.getElementById("track-meaning");
+
+function nextSong() {
+    currentSongIndex++; 
+    
+    // Eğer listedeki tüm şarkılar bittiyse tekrar 1. şarkıya dön
+    if (currentSongIndex >= playlist.length) {
+        currentSongIndex = 0; 
+    }
+    
+    const track = playlist[currentSongIndex];
+    
+    // Şarkıyı değiştir ve başlat
+    audioEl.src = track.src;
+    audioEl.play(); 
+    vinylBtn.classList.add("playing"); // Plağı döndür
+
+    // Bilgi kutusunun içindeki yazıları değiştir
+    trackTitle.innerText = track.title;
+    trackMeaning.innerText = track.meaning;
+    
+    // Kutuyu ekranda göster (CSS'teki 'show' sınıfını ekleyerek)
+    meaningBox.classList.add("show");
+
+    // Okuması için 6 saniye bekle, sonra kutuyu yavaşça gizle
+    setTimeout(() => {
+        meaningBox.classList.remove("show");
+    }, 6000); 
+}
+
+// Şarkı kendiliğinden bittiğinde otomatik olarak sonrakine geçsin
+audioEl.addEventListener("ended", nextSong);
+
+/* Scratch Card */
+        const canvas = document.getElementById('scratch-canvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let isRevealed = false; // Kutlamanın sadece 1 kere tetiklenmesi için
+
+        // Tuvali gri ile doldur ve yazıyı yaz
+        ctx.fillStyle = '#333'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#666'; ctx.font = 'bold 14px Raleway'; ctx.textAlign = 'center';
+        ctx.fillText('SCRATCH TO SEE SURPRISE...', 160, 85);
+
+        function scratch(e) {
+            if (!isDrawing || isRevealed) return; // Zaten açıldıysa kazımayı durdur
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+            const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath(); ctx.arc(x, y, 18, 0, Math.PI * 2); ctx.fill(); // Fırça boyutunu 18 yaptım biraz daha kolay kazınsın
+
+            checkScratch(); // Her kazıma hareketinde kontrol et
+        }
+
+        function checkScratch() {
+            // Tuvaldeki tüm piksellerin verisini al
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const pixels = imageData.data;
+            let transparentPixels = 0;
+            
+            // Her 4. değer alfa (saydamlık) kanalıdır
+            for (let i = 3; i < pixels.length; i += 4) {
+                if (pixels[i] === 0) transparentPixels++;
+            }
+            
+            const totalPixels = pixels.length / 4;
+            const percentScratched = (transparentPixels / totalPixels) * 100;
+            
+            // Eğer %55'ten fazlası kazındıysa kutlamayı başlat
+            if (percentScratched > 55) {
+                isRevealed = true;
+                triggerCelebration();
+            }
+        }
+
+        function triggerCelebration() {
+            // 1. Gri katmanı yavaşça ve zarifçe yok et (kalan kısımlar da tamamen açılsın)
+            canvas.style.transition = "opacity 1s ease-out";
+            canvas.style.opacity = "0";
+            
+            // Tuvali gizle ki altındaki yazıya (varsa butonlara vs.) tıklanabilsin
+            setTimeout(() => canvas.style.display = "none", 1000); 
+
+            // 2. Kutlama: Senin minik kalpleri konfeti gibi art arda fırlat
+            for (let i = 0; i < 40; i++) {
+                setTimeout(spawnMiniHeart, i * 80); 
+            }
+
+            // 3. (Opsiyonel) Ekrana tatlı bir bildirim çıkar
+            setTimeout(() => {
+                alert("Ömür Boyu Sarılma Üyeliğin Aktif Edildi Sevgilim! 🎉❤");
+            }, 1200);
+        }
+
+        // Olay dinleyicileri (Event Listeners)
+        canvas.addEventListener('mousedown', () => isDrawing = true);
+        canvas.addEventListener('touchstart', (e) => { isDrawing = true; e.preventDefault(); });
+        window.addEventListener('mouseup', () => isDrawing = false);
+        window.addEventListener('touchend', () => isDrawing = false);
+        canvas.addEventListener('mousemove', scratch);
+        canvas.addEventListener('touchmove', (e) => { scratch(e); e.preventDefault(); });
