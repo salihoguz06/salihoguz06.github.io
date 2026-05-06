@@ -169,13 +169,13 @@ const playlist = [
             let message = "";
 
             if (hour >= 5 && hour < 12) {
-                message = "Günaydın her şeyim, bugün de seni dünden çok seviyorum...";
+                message = "Dzien Dobry my love!";
             } else if (hour >= 12 && hour < 18) {
-                message = "Günün en güzel saatleri seninle geçenlerdir sevgilim...";
+                message = "I wish you a lovely day Ms. Ola";
             } else if (hour >= 18 && hour < 23) {
-                message = "İyi akşamlar sevgilim, kalbim yine seninle...";
+                message = "Good evening my beauty.";
             } else {
-                message = "İyi geceler gökyüzüm, rüyalarda buluşalım...";
+                message = "Have a good night my only love. You'll sleep like a baby tonight:)";
             }
             greetingEl.setAttribute('data-text', message); // Mesajı animasyon verisine yazar
             initTypewriter(greetingEl); // Diğer yazılardaki gibi daktilo animasyonunu başlatır

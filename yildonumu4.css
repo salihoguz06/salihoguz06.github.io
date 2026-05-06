@@ -65,7 +65,7 @@
         nav {
             position: fixed; top: 0; width: 100%; padding: 15px 40px;
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px);
             z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .nav-logo { font-family: 'Playfair Display'; font-weight: 700; color: var(--primary-red); letter-spacing: 2px; }
@@ -96,7 +96,7 @@
         .letter { display: inline-block; opacity: 0; transform: translateY(12px); filter: blur(6px); transition: all 0.9s cubic-bezier(0.2, 1, 0.3, 1); }
         .letter.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 
-        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 8vw, 4.5rem); margin-bottom: 20px; }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 3vw, 4.5rem); margin-bottom: 20px; }
 
         /* Heart Animation - Hover & Click Fixed */
         .heart-wrapper { margin-bottom: 25px; }
@@ -132,7 +132,7 @@
         }
 
         /* Counter */
-        .counter-container { background: var(--glass); backdrop-filter: blur(15px); padding: 30px; border-radius: 35px; border: 1px solid rgba(255,255,255,0.1); }
+        .counter-container { background: var(--glass); backdrop-filter: blur(2px); padding: 30px; border-radius: 35px; border: 1px solid rgba(255,255,255,0.1); }
         .counter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
         .counter-value { font-size: clamp(1.2rem, 5vw, 2.2rem); color: var(--primary-red); font-family: 'Playfair Display', serif; font-weight: 700; }
 
@@ -162,9 +162,35 @@
         .gallery-btn { pointer-events: auto; font-size: 3rem; color: white; cursor: pointer !important; user-select: none; z-index: 5500; text-shadow: 0 0 10px black; }
 
         /* Wish Balloons */
-        .wish-section { background: rgba(0,0,0,0.3); position: relative; overflow: hidden; }
-        .wish-box { background: var(--glass); padding: 35px; border-radius: 30px; backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); max-width: 400px; width: 100%; z-index: 10; }
-        textarea { width: 100%; height: 100px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.15); border-radius: 15px; padding: 15px; color: white; font-family: 'Raleway'; resize: none; margin-bottom: 20px; outline: none; cursor: auto !important; }
+        .wish-box { 
+            background: var(--glass); 
+            padding: 40px; 
+            border-radius: 30px; 
+            backdrop-filter: blur(5px); /* Arka planı buğulandıran sihirli kod */
+            border: 1px solid rgba(255, 255, 255, 0.15); /* İnce, zarif beyaz çerçeve */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Kutuyu arka plandan ayıran hafif gölge */
+            max-width: 450px; 
+            width: 100%; 
+            z-index: 10; 
+            text-align: center;
+        }        
+        textarea { 
+            width: 100%; 
+            height: 100px; 
+            background: rgba(255, 255, 255, 0.05); /* Siyah yerine hafif şeffaf beyaz */
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            border-radius: 15px; 
+            padding: 15px; 
+            color: white; 
+            font-family: 'Raleway', sans-serif; 
+            resize: none; 
+            margin-bottom: 20px; 
+            outline: none; 
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* İçeriye doğru hafif derinlik */
+        }        
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6); /* İçindeki yönlendirme yazısının rengi */
+        }
         .send-btn { background: var(--primary-red); color: white; border: none; padding: 12px 35px; border-radius: 50px; font-weight: 600; }
         
         .balloon { 
