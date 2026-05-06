@@ -12,19 +12,66 @@
             });
         });
 
-        // --- 3. TYPEWRITER ---
+// --- 3. TYPEWRITER ---
         function initTypewriter(el) {
-            const text = el.getAttribute('data-text'); el.innerText = '';
-            text.split("").forEach((char, i) => {
-                const span = document.createElement("span");
-                span.innerText = char === " " ? "\u00A0" : char;
-                span.className = "letter"; el.appendChild(span);
-                setTimeout(() => span.classList.add("visible"), i * 50);
+            const text = el.getAttribute('data-text'); 
+            
+            // GÜVENLİK KİLİDİ: Eğer elementin içinde henüz yazı yoksa sistemi çökertme, işlemi durdur.
+            if (!text) return; 
+
+            el.innerHTML = ''; // İçeriği temizle
+            
+            // Metni kelimelere bölüyoruz
+            const words = text.split(' ');
+            let charIndex = 0;
+
+            words.forEach((word, wIdx) => {
+                // Her kelimeyi dağılmaması için bir kapsayıcı (span) içine alıyoruz
+                const wordSpan = document.createElement('span');
+                wordSpan.style.display = 'inline-block';
+                wordSpan.style.whiteSpace = 'nowrap'; // Kelimenin ortadan bölünmesini KESİNLİKLE engeller
+
+                // Kelimenin harflerini ekliyoruz
+                word.split('').forEach((char) => {
+                    const span = document.createElement('span');
+                    span.innerText = char;
+                    span.className = 'letter';
+                    wordSpan.appendChild(span);
+                    
+                    setTimeout(() => {
+                        span.classList.add('visible');
+                    }, charIndex * 40); // Hızını 40ms yaptım daha akıcı olsun
+                    charIndex++;
+                });
+
+                el.appendChild(wordSpan);
+
+                // Son kelime değilse araya boşluk ekliyoruz (Satır atlama sadece bu boşluklardan olacak)
+                if (wIdx < words.length - 1) {
+                    const spaceSpan = document.createElement('span');
+                    spaceSpan.innerHTML = '&nbsp;'; // HTML boşluk kodu
+                    spaceSpan.className = 'letter'; 
+                    el.appendChild(spaceSpan);
+                    
+                    setTimeout(() => {
+                        spaceSpan.classList.add('visible');
+                    }, charIndex * 40);
+                    charIndex++;
+                }
             });
         }
+
+        // Observer (Kullanıcı aşağı kaydırdıkça sıradaki animasyonları tetikler)
         const obs = new IntersectionObserver((es) => {
-            es.forEach(e => { if (e.isIntersecting) { initTypewriter(e.target); obs.unobserve(e.target); }});
+            es.forEach(e => { 
+                if (e.isIntersecting) { 
+                    initTypewriter(e.target); 
+                    obs.unobserve(e.target); 
+                }
+            });
         }, { threshold: 0.4 });
+
+        // Sitedeki tüm soft-typewriter class'lı yazıları dinlemeye al
         document.querySelectorAll('.soft-typewriter').forEach(el => obs.observe(el));
 
         // --- 4. COUNTER ---
