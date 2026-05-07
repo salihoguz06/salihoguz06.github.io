@@ -86,53 +86,65 @@
         // --- 5. GALLERY DATA ---
         const galleryData = {
             'lizbon': [
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'The day I reborned...' },
-                { img: 'fotolar/1.2.jpeg', text: 'Life was getting better and better.' },
-                { img: 'fotolar/fell_love.jpeg', text: 'But I fell in love so harsh...' },
-                { img: 'fotolar/dans.jpeg', text: 'Finally my plan to kidnapp you with bringing you to camp was working so well.' },
-                { img: 'fotolar/qfdf.jpeg', text: 'Finally my plan to kidnapp you with bringing you to camp was working so well.' },
-                { img: 'fotolar/qfdf.jpeg', text: 'Finally my plan to kidnapp you with bringing you to camp was working so well.' },
-                { img: 'fotolar/qfdf.jpeg', text: 'Finally my plan to kidnapp you with bringing you to camp was working so well.' },
-                { img: 'fotolar/qfdf.jpeg', text: 'Finally my plan to kidnapp you with bringing you to camp was working so well.' }
-                
+                { img: 'İlk aylar/IMG-20250426-WA0043.jpg', text: 'The day I reborned...' },
+                { img: 'İlk aylar/1.2.jpeg', text: 'Life was getting better and better.' },
+                { img: 'İlk aylar/kamp.jpeg', text: 'Finally my plan to kidnapp you with bringing you to camp was working so well.' },
+                { img: 'İlk aylar/fell_love.jpeg', text: 'But I fell in love so harsh...' },
+                { img: 'İlk aylar/dans.jpeg', text: '' },
+                { img: 'İlk aylar/kamp2.jpeg', text: '' },
+                { img: 'İlk aylar/qfdf.jpeg', text: '' },
+                { img: 'İlk aylar/ask.jpeg', text: 'I was obsessed with that cute face.' },
+                { img: 'İlk aylar/love.jpeg', text: 'That eyes were cutting my heart to half.' },
+                { img: 'İlk aylar/öpucuk.jpeg', text: '❤️' },
+                { img: 'İlk aylar/adalar.jpeg', text: 'Please bury me to your neck.' },
+                { img: 'İlk aylar/bulgaria.jpeg', text: 'Bulgaria... 💘' }                
             ],
             'polonya': [
-                { img: 'https://images.unsplash.com/photo-1590502593747-42a996111115?w=1200', text: 'Your smile warming me in the freezing Warsaw winter.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' }
+                { img: 'polonya/sexy.jpg', text: 'Deciding to come was best decision I made.' },
+                { img: 'polonya/cute.jpg', text: 'Cutest pic ever.' },
+                { img: 'polonya/princess.jpg', text: 'My little passenger princess.' },
+                { img: 'polonya/malborough.jpg', text: 'Its addicting to travel with you.' },
+                { img: 'polonya/kiss.jpeg', text: 'To kiss...' },
+                { img: 'polonya/kiss2.jpg', text: '❤️' },
+                { img: 'polonya/kiss4.jpg', text: 'Kocham Cię' },
+                { img: 'polonya/kiss5.jpg', text: '' },
+                { img: 'polonya/eat.jpg', text: 'To eat...' },
+                { img: 'polonya/sexy2.jpg', text: '' },
+                { img: 'polonya/gdansk.jpg', text: 'Gdansk' },
+                { img: 'polonya/gzl.jpg', text: '' }
             ],
 
             'izmir': [
-                { img: 'https://images.unsplash.com/photo-1590502593747-42a996111115?w=1200', text: 'Your smile warming me in the freezing Warsaw winter.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' }
-            ],
-            'İstanbul': [
-                { img: 'https://images.unsplash.com/photo-1590502593747-42a996111115?w=1200', text: 'Your smile warming me in the freezing Warsaw winter.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
-                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' }
-            ]
+                { img: 'fotolar/deniz2.jpeg', text: 'That touch killed me.' },
+                { img: 'fotolar/fur.jpeg', text: 'Mmmm, that white fur.' },
+                { img: 'fotolar/kiss.jpg', text: 'More kisses' },
+                { img: 'fotolar/kiss2.jpeg', text: '' },
+                { img: 'fotolar/kiss3.jpeg', text: 'Kham' },
+                { img: 'fotolar/izmir.jpeg', text: 'Ahh that dress 😫.' },
+                { img: 'fotolar/sexynight.jpeg', text: 'I remember this sexy night so clear.' },
+                { img: 'fotolar/sexy.jpeg', text: 'Masculine man diet: Some underground rock bar in Warsaw, beer and these sexy legs with fishnet.' },
+                { img: 'fotolar/halloween.jpeg', text: 'That Halloween ' },
+                { img: 'fotolar/west.jpeg', text: 'I fell in love again in westest point of europe.' },
+                { img: 'fotolar/poland2.jpeg', text: '' },
+                { img: 'fotolar/cutie.jpeg', text: 'Cute girlfriend helps her boyfriend.' },            ]
         };
 
         let currentAlbum = '';
         let currentIndex = 0;
 
         function openGallery(album) {
+
+            if (album === 'izmir') {
+                const password = prompt("It's locked. Please enter the password.");
+                
+                if (password === null) return;
+                // Şifreyi aşağıya yazabilirsin (Şu an "2604" olarak ayarlı)
+                if (password !== "3112") { 
+                    alert("Wrong password thief. Only she can know it... 🕵️‍♀️");
+                    return; // Şifre yanlışsa işlemi durdur ve galeriyi açma
+                }
+            }
+
             currentAlbum = album;
             currentIndex = 0;
             updateModal();
@@ -163,7 +175,7 @@
         function checkUnlockDate(date, title) {
             const diff = new Date(date) - new Date();
             if(diff <= 0) alert(title + " is now unlocked!");
-            else alert("Be patient, engineer... 🛠️\n\n" + title + " will unlock in " + Math.ceil(diff/86400000) + " days. ❤️");
+            else alert("Be patient, my love... \n\n" + title + " will unlock in " + Math.ceil(diff/86400000) + " days. ❤️");
         }
 
         // --- 8. BALLOONS, SCRATCH & STALK ---
@@ -227,19 +239,24 @@
         // --- 11. PLAK VE ÇALMA LİSTESİ (HİKAYELİ KUTU) ---
 const playlist = [
     { 
-        src: "zeki-muren-simdi-uzaklardasin_Mp3.Sevir.Az.mp3", // Buraya 1. MP3 linki
-        title: "Bizim Melodimiz", 
-        meaning: "Beşiktaş'ta o ilk kahveyi içerken fonda çalan, her duyduğumda senin gülüşünü hatırlatan o şarkı." 
+        src: "müzik/zeki-muren-simdi-uzaklardasin_Mp3.mp3", // Buraya 1. MP3 linki
+        title: "Şimdi Uzaklardasın", 
+        meaning: "Symbol of our sadness after I leave istanbul in that cursed july." 
     },
     { 
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", // Buraya 2. MP3 linki
-        title: "Ritim ve Ateş", 
-        meaning: "Polonya'nın dondurucu soğuğunda bizi dans ettiren, enerjimizi hiç bitirmeyen o muazzam ritim." 
+        src: "müzik/Herbert_Rehbein_and_His_Orchestra_-_My_Way_of_Life_(SkySound.cc).mp3", // Buraya 2. MP3 linki
+        title: "You're My Way of Life (Recommended)", 
+        meaning: "You became my way of life baby." 
     },
     { 
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", // Buraya 3. MP3 linki
-        title: "Zamanın Ötesinde", 
-        meaning: "Lizbon'un dar sokaklarında kaybolduğumuzda çalan o huzur dolu tını..." 
+        src: "müzik/Duman-Kopru-Alti.mp3", // Buraya 3. MP3 linki
+        title: "Köprü Altı - Duman", 
+        meaning: "Such a duman classic of our relationship" 
+    },
+    { 
+        src: "müzik/Nilufer-Son-Arzum.mp3", // Buraya 3. MP3 linki
+        title: "My Last Wish", 
+        meaning: "If they ask me, what my last wish is I hope they'll look into my eyes and understand everything." 
     }
 ];
 
@@ -263,34 +280,46 @@ const playlist = [
 
         // --- 14. I LOVE YOU BECAUSE GENERATOR ---
         const reasons = [
-            "Your smile instantly warms up even the coldest day in Poland.",
-            "I've engraved the moment you held my hand while getting lost in the narrow streets of Lisbon into my heart.",
-            "You solve even the most complex equations of my life with just a single glance.",
-            "When I look into your eyes, I feel like the whole world stops and it's just the two of us.",
-            "You are not just my lover, but my best friend and my greatest travel companion.",
-            "Hearing your voice gives me endless peace, even after the most exhausting day.",
-            "The thought of waking up to a new life with you every morning keeps me tied to the future.",
-            "I am in love with those moments when we can be childish together and share the most sincere laughs.",
-            "I feel like the luckiest man in the world when I'm by your side.",
-            "When our hands meet, everything else loses its meaning."
+            "Every minute I spend with you feels like once in life experience.",
+            "Since I first saw you, my life changed so much in always positive direction. I feel that as blessing.",
+            "I like your way to love me. That is much more important to me then it looks.",
+            "I love how clewer you are.",
+            "You are not just my lover, but my greatest and favorite travel companion.",
+            "You're the mosttt attractive girl I've ever met.",
+            "As a person who is stubborn and loves to play with fate, the fact that you're like that too makes me obsessed.",
+            "I am in love with those moments when we can be childish together and share the most sincere laughs."
         ];
 
-        let lastReasonIndex = -1; 
+        let reasonOrder = [];
+        let currentReasonIndex = 0;
+
+        // Sözleri sayfa açıldığında bir kez karıştırıp gizli bir sıraya diziyoruz
+        function initReasons() {
+            reasonOrder = reasons.map((_, i) => i);
+            for (let i = reasonOrder.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [reasonOrder[i], reasonOrder[j]] = [reasonOrder[j], reasonOrder[i]];
+            }
+        }
+        initReasons(); // Sıralamayı hazırla
 
         function generateReason() {
             const reasonEl = document.getElementById('random-reason');
-            let randomIndex;
             
-            do {
-                randomIndex = Math.floor(Math.random() * reasons.length);
-            } while (randomIndex === lastReasonIndex);
-            
-            lastReasonIndex = randomIndex;
-            
+            // Eğer listedeki tüm sözler bittiyse, yeniden karıştırıp baştan başla
+            if (currentReasonIndex >= reasonOrder.length) {
+                initReasons();
+                currentReasonIndex = 0;
+            }
+
+            // Sıradaki sözü seç
+            const selectedIndex = reasonOrder[currentReasonIndex];
+            currentReasonIndex++; // Bir sonraki tıklama için sırayı ilerlet
+
             reasonEl.style.opacity = 0;
             
             setTimeout(() => {
-                reasonEl.innerText = "“" + reasons[randomIndex] + "”";
+                reasonEl.innerText = "“" + reasons[selectedIndex] + "”";
                 reasonEl.style.opacity = 1;
             }, 400); 
         }
@@ -397,7 +426,7 @@ audioEl.addEventListener("ended", nextSong);
             const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
             const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
             ctx.globalCompositeOperation = 'destination-out';
-            ctx.beginPath(); ctx.arc(x, y, 18, 0, Math.PI * 2); ctx.fill(); // Fırça boyutunu 18 yaptım biraz daha kolay kazınsın
+            ctx.beginPath(); ctx.arc(x, y, 14, 0, Math.PI * 2); ctx.fill(); // Fırça boyutunu 18 yaptım biraz daha kolay kazınsın
 
             checkScratch(); // Her kazıma hareketinde kontrol et
         }
@@ -417,7 +446,7 @@ audioEl.addEventListener("ended", nextSong);
             const percentScratched = (transparentPixels / totalPixels) * 100;
             
             // Eğer %55'ten fazlası kazındıysa kutlamayı başlat
-            if (percentScratched > 55) {
+            if (percentScratched > 75) {
                 isRevealed = true;
                 triggerCelebration();
             }
