@@ -247,8 +247,27 @@
     pointer-events: auto; /* Ekrandayken tıklanabilir olsun */
 }
         
-        .modal-content { max-width: 85%; max-height: 70%; border-radius: 15px; box-shadow: 0 0 0px var(--primary-red); margin-bottom: 20px; }
-        .modal-text { font-family: 'Playfair Display'; font-size: 1.3rem; color: white; margin-top: 15px; padding: 0 20px; text-align: center; max-width: 90%; }
+        /* Fotoğrafın geçiş efekti */
+.modal-content { 
+    max-width: 85%; 
+    max-height: 70%; 
+    border-radius: 15px; 
+    margin-bottom: 20px;
+    /* EKLENEN KOD: */
+    transition: opacity 0.4s ease-in-out; 
+}
+/* Yazının geçiş efekti */
+.modal-text { 
+    font-family: 'Playfair Display'; 
+    font-size: 1.3rem; 
+    color: white; 
+    margin-top: 15px; 
+    padding: 0 20px; 
+    text-align: center; 
+    max-width: 90%;
+    /* EKLENEN KOD: */
+    transition: opacity 0.4s ease-in-out; 
+}
         .close-modal { position: absolute; top: 20px; right: 30px; font-size: 3rem; color: white; cursor: pointer !important; z-index: 6000; }
         .nav-gallery { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; padding: 0 25px; transform: translateY(-50%); pointer-events: none; }
         .gallery-btn { pointer-events: auto; font-size: 3rem; color: white; cursor: pointer !important; user-select: none; z-index: 5500; text-shadow: 0 0 10px black; }

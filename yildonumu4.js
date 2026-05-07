@@ -154,10 +154,31 @@
         function closeGallery() { document.getElementById('galleryModal').classList.remove('open'); }
 
         function updateModal() {
-            const data = galleryData[currentAlbum][currentIndex];
-            document.getElementById('modalImg').src = data.img;
-            document.getElementById('modalText').innerText = data.text;
-        }
+    const modalImg = document.getElementById('modalImg');
+    const modalText = document.getElementById('modalText');
+    const data = galleryData[currentAlbum][currentIndex];
+
+    // 1. Önce mevcut fotoğrafı ve yazıyı görünmez yap
+    modalImg.style.opacity = '0';
+    modalText.style.opacity = '0';
+
+    // 2. Kararma efekti için 300ms bekle, sonra içeriği değiştir
+    setTimeout(() => {
+        modalImg.src = data.img;
+        modalText.innerText = data.text;
+
+        // 3. Yeni fotoğraf yüklenmeye başladığında tekrar görünür yap
+        // Bu sayede geçiş "pürüzsüz" olur
+        modalImg.onload = () => {
+            modalImg.style.opacity = '1';
+            modalText.style.opacity = '1';
+        };
+
+        // Resim önbellekteyse onload bazen tetiklenmeyebilir, güvenlik için:
+        modalImg.style.opacity = '1';
+        modalText.style.opacity = '1';
+    }, 300);
+}
 
         function nextSlide() { currentIndex = (currentIndex + 1) % galleryData[currentAlbum].length; updateModal(); }
         function prevSlide() { currentIndex = (currentIndex - 1 + galleryData[currentAlbum].length) % galleryData[currentAlbum].length; updateModal(); }
