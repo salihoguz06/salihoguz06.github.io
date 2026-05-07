@@ -308,7 +308,8 @@ const playlist = [
             "You are not just my lover, but my greatest and favorite travel companion.",
             "You're the mosttt attractive girl I've ever met.",
             "As a person who is stubborn and loves to play with fate, the fact that you're like that too makes me obsessed.",
-            "I am in love with those moments when we can be childish together and share the most sincere laughs."
+            "I am in love with those moments when we can be childish together and share the most sincere laughs.",
+            "I know you are 'the one' in my lifetime. This much love happens only one time in life."
         ];
 
         let reasonOrder = [];
