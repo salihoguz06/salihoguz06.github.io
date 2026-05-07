@@ -86,13 +86,46 @@
         // --- 5. GALLERY DATA ---
         const galleryData = {
             'lizbon': [
-                { img: 'https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?w=1200', text: 'Lost in the streets of Lisbon on that windy day...' },
-                { img: 'https://images.unsplash.com/photo-1516589174184-c68526617af0?w=1200', text: 'Every view is beautiful with you, my love.' },
-                { img: 'https://images.unsplash.com/photo-1516589174184-c68526617af0?w=1200', text: 'Another memory sealed forever.' }
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'The day I reborned...' },
+                { img: 'fotolar/1.2.jpeg', text: 'Life was getting better and better.' },
+                { img: 'fotolar/fell_love.jpeg', text: 'But I fell in love so harsh...' },
+                { img: 'fotolar/dans.jpeg', text: 'Finally my plan to kidnapp you with bringing you to camp was working so well.' },
+                { img: 'fotolar/qfdf.jpeg', text: 'Finally my plan to kidnapp you with bringing you to camp was working so well.' },
+                { img: 'fotolar/qfdf.jpeg', text: 'Finally my plan to kidnapp you with bringing you to camp was working so well.' },
+                { img: 'fotolar/qfdf.jpeg', text: 'Finally my plan to kidnapp you with bringing you to camp was working so well.' },
+                { img: 'fotolar/qfdf.jpeg', text: 'Finally my plan to kidnapp you with bringing you to camp was working so well.' }
+                
             ],
             'polonya': [
                 { img: 'https://images.unsplash.com/photo-1590502593747-42a996111115?w=1200', text: 'Your smile warming me in the freezing Warsaw winter.' },
-                { img: 'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=1200', text: 'Warm memories in a cold land.' }
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' }
+            ],
+
+            'izmir': [
+                { img: 'https://images.unsplash.com/photo-1590502593747-42a996111115?w=1200', text: 'Your smile warming me in the freezing Warsaw winter.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' }
+            ],
+            'İstanbul': [
+                { img: 'https://images.unsplash.com/photo-1590502593747-42a996111115?w=1200', text: 'Your smile warming me in the freezing Warsaw winter.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' },
+                { img: 'fotolar/IMG-20250426-WA0043.jpg', text: 'Warm memories in a cold land.' }
             ]
         };
 
