@@ -267,7 +267,7 @@ const playlist = [
     { 
         src: "müzik/Herbert_Rehbein_and_His_Orchestra_-_My_Way_of_Life_(SkySound.cc).mp3", // Buraya 2. MP3 linki
         title: "You're My Way of Life (Recommended)", 
-        meaning: "You became my way of life baby." 
+        meaning: "You became my way of life." 
     },
     { 
         src: "müzik/Duman-Kopru-Alti.mp3", // Buraya 3. MP3 linki
