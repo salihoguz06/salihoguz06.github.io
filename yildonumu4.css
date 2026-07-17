@@ -170,7 +170,8 @@
         }
 
         /* Kalbe (veya kutusuna) gelindiğinde kutuyu göster */
-        .heart-wrapper:hover .heart-popup {
+        .heart-wrapper:hover .heart-popup,
+        .heart-wrapper.show-popup .heart-popup {
             opacity: 1;
             visibility: visible;
             transform: translateY(-50%) translateX(0); /* Yerine yumuşakça otursun */
@@ -189,7 +190,8 @@
                 left: 50%;
                 transform: translateX(-50%) rotate(90deg); /* Oku yukarı çevir */
             }
-            .heart-wrapper:hover .heart-popup {
+            .heart-wrapper:hover .heart-popup,
+            .heart-wrapper.show-popup .heart-popup {
                 transform: translateX(-50%) translateY(0);
             }
         }

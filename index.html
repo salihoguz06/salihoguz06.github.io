@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Story of Our Life | S & A</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Raleway:wght@200;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="yildonumu4.css">
@@ -45,7 +45,7 @@
             <div class="main-heart" id="heartTrigger">❤</div>
             <div class="heart-popup">That's what happens to me when you touch me...</div>
         </div>
-            <div class="Note" style="margin-bottom: 35px; font-style: italic; color: #eee; font-size: 1.1rem; letter-spacing: 1px;">For this much of time, I'm unarguably having best part of my entire life.</div>        
+            <div style="margin-bottom: 35px; font-style: italic; color: #eee; font-size: 1.1rem; letter-spacing: 1px;">For this much of time, I'm unarguably having best part of my entire life.</div>
             <div class="counter-container">
             <div class="counter-grid">
                 <div class="counter-item"><span class="counter-value" id="days">00</span><br><small>DAYS</small></div>
@@ -106,7 +106,7 @@
     <!-- Modal Gallery -->
     <div class="modal" id="galleryModal">
         <span class="close-modal" onclick="closeGallery()">&times;</span>
-        <img class="modal-content" id="modalImg" src="">
+        <img class="modal-content" id="modalImg" src="" alt="Memory photo">
         <div class="modal-text" id="modalText"></div>
         <div class="nav-gallery">
             <span class="gallery-btn" onclick="prevSlide()">&#10094;</span>
@@ -146,7 +146,7 @@
         <div id="location-result" style="display:none; text-align:center">
             <h2 style="font-family: 'Playfair Display'; color: var(--primary-red);">Target Located!</h2>
             <p style="margin-top:15px; font-size:0.9rem; color:#ccc">Signal Strength: Maximum - Heartbeat Synchronized.</p>
-            <a href="https://maps.app.goo.gl/zL3bhmTMPjnBJULK7" target="_blank" class="live-btn">📍 Track Live Now</a>
+            <a href="https://maps.app.goo.gl/zL3bhmTMPjnBJULK7" target="_blank" rel="noopener noreferrer" class="live-btn">📍 Track Live Now</a>
         </div>
     </div>
 
@@ -163,7 +163,7 @@
             </svg>
         </div>
     </div>
-    <audio id="bgMusic" src=""></audio>
+    <audio id="bgMusic"></audio>
 
     <script src="yildonumu4.js"></script>
 </body>

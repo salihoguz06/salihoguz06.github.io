@@ -3,6 +3,21 @@
         const startDay = new Date("2025-04-26T04:00:00");
         const warsawFlightUnlockDate = new Date("2026-05-15T00:00:00");
 
+        // --- 1b. HEART TOUCH POPUP (mobile: :hover doesn't work reliably, so toggle a class on tap) ---
+        const heartTrigger = document.getElementById('heartTrigger');
+        const heartWrapper = heartTrigger ? heartTrigger.closest('.heart-wrapper') : null;
+        if (heartWrapper) {
+            heartTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                heartWrapper.classList.toggle('show-popup');
+            });
+            document.addEventListener('click', (e) => {
+                if (!heartWrapper.contains(e.target)) {
+                    heartWrapper.classList.remove('show-popup');
+                }
+            });
+        }
+
         // --- 2. CURSOR TRACKING ---
         const cursor = document.getElementById('custom-cursor');
         document.addEventListener('mousemove', (e) => {
@@ -138,8 +153,8 @@
                 const password = prompt("It's locked. Please enter the password.");
                 
                 if (password === null) return;
-                // Şifreyi aşağıya yazabilirsin (Şu an "2604" olarak ayarlı)
-                if (password !== "3112") { 
+                // Şifreyi aşağıya yazabilirsin (Şu an "3112" olarak ayarlı)
+                if (password !== "3112") {
                     alert("Wrong password thief. Only she can know it... 🕵️‍♀️");
                     return; // Şifre yanlışsa işlemi durdur ve galeriyi açma
                 }
@@ -165,6 +180,7 @@
     // 2. Kararma efekti için 300ms bekle, sonra içeriği değiştir
     setTimeout(() => {
         modalImg.src = data.img;
+        modalImg.alt = data.text || 'Memory photo';
         modalText.innerText = data.text;
 
         // 3. Yeni fotoğraf yüklenmeye başladığında tekrar görünür yap
@@ -189,7 +205,7 @@
             if (now < warsawFlightUnlockDate) {
                 alert("Signal Weak, My Love! 🛸\n\nAccess to May 16th Warsaw flight tracking will open on May 15th. Until then, it stays locked!");
             } else {
-                window.open("https://www.google.com/search?q=Warsaw+Flight+Tracking+16+May+2026", "_blank");
+                window.open("https://www.google.com/search?q=Warsaw+Flight+Tracking+16+May+2026", "_blank", "noopener,noreferrer");
             }
         }
 
@@ -410,10 +426,9 @@ function nextSong() {
     
     const track = playlist[currentSongIndex];
     
-    // Şarkıyı değiştir ve başlat
+    // Şarkıyı değiştir ve başlat (plağın dönmesi "play" event listener'ı ile tetiklenir)
     audioEl.src = track.src;
-    audioEl.play(); 
-    vinylBtn.classList.add("playing"); // Plağı döndür
+    audioEl.play();
 
     // Bilgi kutusunun içindeki yazıları değiştir
     trackTitle.innerText = track.title;
@@ -430,6 +445,10 @@ function nextSong() {
 
 // Şarkı kendiliğinden bittiğinde otomatik olarak sonrakine geçsin
 audioEl.addEventListener("ended", nextSong);
+
+// Plağın dönme animasyonunu gerçek çalma durumuyla senkronize et
+audioEl.addEventListener("pause", () => vinylBtn.classList.remove("playing"));
+audioEl.addEventListener("play", () => vinylBtn.classList.add("playing"));
 
 /* Scratch Card */
         const canvas = document.getElementById('scratch-canvas');
@@ -467,7 +486,7 @@ audioEl.addEventListener("ended", nextSong);
             const totalPixels = pixels.length / 4;
             const percentScratched = (transparentPixels / totalPixels) * 100;
             
-            // Eğer %55'ten fazlası kazındıysa kutlamayı başlat
+            // Eğer %75'ten fazlası kazındıysa kutlamayı başlat
             if (percentScratched > 75) {
                 isRevealed = true;
                 triggerCelebration();
