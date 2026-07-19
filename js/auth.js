@@ -22,6 +22,7 @@
         overlay.hidden = true;
         document.body.classList.remove("locked");
         logoutBtn.hidden = false;
+        document.dispatchEvent(new CustomEvent("sa:unlocked"));
     }
 
     lock();
