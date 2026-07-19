@@ -5,18 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Story of Our Life | S & A</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Raleway:wght@200;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="yildonumu4.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <div class="bg-layer"></div>
     <div id="custom-cursor">❤</div>
 
+    <!-- Login Gate -->
+    <div id="login-overlay" hidden>
+        <div class="login-card">
+            <div class="login-logo">S <span class="login-amp">&</span> A</div>
+            <p class="login-sub">This place belongs to only two people in the world.</p>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required autocomplete="email">
+                <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password">
+                <button class="send-btn login-btn" type="submit">Enter Our World ❤</button>
+                <p id="login-error" role="alert"></p>
+            </form>
+        </div>
+    </div>
+
     <nav>
         <div class="nav-logo">S & A</div>
         <div class="nav-links">
             <div class="nav-btn warsaw-btn" onclick="checkWarsawFlight()">Tap to Stalk Me On the Air For Next Trip</div>
             <div class="nav-btn stalk-btn" onclick="startStalking()">Stalk Me</div>
+            <div class="nav-btn" id="logout-btn" hidden>Log Out</div>
         </div>
     </nav>
 
@@ -106,7 +121,7 @@
     <!-- Modal Gallery -->
     <div class="modal" id="galleryModal">
         <span class="close-modal" onclick="closeGallery()">&times;</span>
-        <img class="modal-content" id="modalImg" src="" alt="Memory photo">
+        <img class="modal-content" id="modalImg" src=" " alt="Memory photo">
         <div class="modal-text" id="modalText"></div>
         <div class="nav-gallery">
             <span class="gallery-btn" onclick="prevSlide()">&#10094;</span>
@@ -165,6 +180,10 @@
     </div>
     <audio id="bgMusic"></audio>
 
-    <script src="yildonumu4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
