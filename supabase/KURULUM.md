@@ -30,8 +30,8 @@ SQL Editor'de şunu çalıştır (id'leri Authentication → Users sayfasından 
 
 ```sql
 insert into public.profiles (id, display_name) values
-  ('SENIN_USER_ID', 'Salih'),
-  ('ONUN_USER_ID', 'Ola');
+  ('10e1abfd-f0ee-43d9-ab0b-5812e72ac290', 'Salih'),
+  ('55bbd170-3581-4aa3-806f-bb9f26ed3562', 'Ola');
 ```
 
 ## 6. Anahtarları siteye tanıt

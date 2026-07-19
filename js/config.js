@@ -17,6 +17,6 @@
 // ============================================================
 
 window.SUPABASE_CONFIG = {
-    url: "BURAYA_PROJECT_URL",
-    anonKey: "BURAYA_ANON_KEY"
+    url: "https://hsbybsgxcwowocwqysxz.supabase.co",
+    anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzYnlic2d4Y3dvd29jd3F5c3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NzAyMzksImV4cCI6MjEwMDA0NjIzOX0.iVAAUp4En1QFuw1vDrLyq7gk6DjzHiKLTQjw7dLWkjI"
 };
