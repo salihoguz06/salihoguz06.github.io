@@ -59,7 +59,7 @@
         /* 2. Genel Karartma: Fotoğrafın üzerindeki o ilk koyuluk (biraz azalttım ki merkez aydınlık kalsın) */
         linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), 
         /* 3. Arka Plan Fotoğrafı */
-        url('fotolar/arkaplan.jpeg');
+        url('../assets/arkaplan.jpeg');
     background-size: cover; 
     background-position: center; 
     z-index: -2;
