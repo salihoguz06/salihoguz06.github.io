@@ -16,9 +16,20 @@ import getpass
 import json
 import mimetypes
 import sys
+import traceback
 import urllib.error
 import urllib.request
 from pathlib import Path
+
+LOG_FILE = Path(__file__).resolve().parent / "migrate_log.txt"
+_log_handle = None
+
+
+def log(msg):
+    print(msg)
+    if _log_handle:
+        _log_handle.write(str(msg) + "\n")
+        _log_handle.flush()
 
 URL = "https://hsbybsgxcwowocwqysxz.supabase.co"
 ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzYnlic2d4Y3dvd29jd3F5c3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NzAyMzksImV4cCI6MjEwMDA0NjIzOX0.iVAAUp4En1QFuw1vDrLyq7gk6DjzHiKLTQjw7dLWkjI"
@@ -122,20 +133,32 @@ def login(email, password):
         data=json.dumps({"email": email, "password": password}).encode(),
     )
     if status != 200:
-        print(f"HATA: Giriş başarısız ({status}): {body.decode(errors='replace')}")
+        log(f"HATA: Giriş başarısız ({status}): {body.decode(errors='replace')}")
         sys.exit(1)
     data = json.loads(body)
     return data["access_token"], data["user"]["id"]
 
 
-def album_exists(token, title):
-    from urllib.parse import quote
+def get_albums(token):
     status, body = request(
         "GET",
-        f"{URL}/rest/v1/albums?title=eq.{quote(title)}&select=id",
+        f"{URL}/rest/v1/albums?select=id,title,cover_path",
         headers=api_headers(token),
     )
-    return status == 200 and len(json.loads(body)) > 0
+    if status != 200:
+        raise RuntimeError(f"Albümler okunamadı ({status}): {body.decode(errors='replace')}")
+    return {a["title"]: a for a in json.loads(body)}
+
+
+def get_photo_paths(token, album_id):
+    status, body = request(
+        "GET",
+        f"{URL}/rest/v1/photos?album_id=eq.{album_id}&select=storage_path",
+        headers=api_headers(token),
+    )
+    if status != 200:
+        raise RuntimeError(f"Fotoğraf listesi okunamadı ({status}): {body.decode(errors='replace')}")
+    return {p["storage_path"] for p in json.loads(body)}
 
 
 def create_album(token, album):
@@ -163,6 +186,7 @@ def upload_file(token, storage_path, local_path):
             "apikey": ANON,
             "Authorization": f"Bearer {token}",
             "Content-Type": content_type,
+            "x-upsert": "true",
         },
         data=local_path.read_bytes(),
     )
@@ -199,52 +223,84 @@ def set_cover(token, album_id, cover_path):
 
 
 def main():
+    global _log_handle
     try:
         sys.stdout.reconfigure(encoding="utf-8")
     except Exception:
         pass
 
-    print("=== S & A Fotoğraf Taşıma ===")
+    _log_handle = open(LOG_FILE, "w", encoding="utf-8")
+
+    log("=== S & A Fotoğraf Taşıma ===")
+    log(f"Python: {sys.version}")
+    log(f"Çalışma klasörü: {ROOT}")
+
     email = input("E-posta: ").strip()
     password = getpass.getpass("Şifre (görünmez, yazıp Enter'a bas): ")
+    log(f"E-posta girildi: {email}")
 
-    print("Giriş yapılıyor...")
+    log("Giriş yapılıyor...")
     token, user_id = login(email, password)
-    print("Giriş başarılı.\n")
+    log(f"Giriş başarılı. Kullanıcı: {user_id}\n")
+
+    existing = get_albums(token)
+    log("Veritabanındaki mevcut durum:")
+    if not existing:
+        log("  (hiç albüm yok)")
+    for title, a in existing.items():
+        paths = get_photo_paths(token, a["id"])
+        log(f"  {title}: {len(paths)} fotoğraf, kapak: {a['cover_path'] or 'YOK'}")
+    log("")
 
     for album in ALBUMS:
-        if album_exists(token, album["title"]):
-            print(f"'{album['title']}' zaten var — atlandı.")
-            continue
-
         missing = [p for p, _ in album["photos"] if not (ROOT / p).exists()]
         if missing:
-            print(f"HATA: '{album['title']}' için eksik dosyalar: {missing}")
-            print("Bu albüm atlandı.")
+            log(f"HATA: '{album['title']}' için eksik dosyalar: {missing}")
+            log("Bu albüm atlandı.")
             continue
 
-        print(f"'{album['title']}' albümü oluşturuluyor...")
-        album_id = create_album(token, album)
+        record = existing.get(album["title"])
+        if record:
+            album_id = record["id"]
+            log(f"'{album['title']}' zaten var — eksikleri tamamlanacak.")
+        else:
+            log(f"'{album['title']}' albümü oluşturuluyor...")
+            album_id = create_album(token, album)
+            log(f"  Albüm id: {album_id}")
 
+        have = get_photo_paths(token, album_id)
         cover_storage_path = None
+
         for i, (rel_path, caption) in enumerate(album["photos"]):
             local = ROOT / rel_path
             ext = local.suffix.lower().lstrip(".") or "jpg"
             storage_path = f"{album['slug']}/{i:02d}.{ext}"
 
-            print(f"  [{i + 1}/{len(album['photos'])}] {rel_path} yükleniyor...")
-            upload_file(token, storage_path, local)
-            insert_photo(token, user_id, album_id, storage_path, caption, i)
-
             if i == album["cover_index"]:
                 cover_storage_path = storage_path
 
-        if cover_storage_path:
-            set_cover(token, album_id, cover_storage_path)
-        print(f"'{album['title']}' tamamlandı. ✓\n")
+            if storage_path in have:
+                log(f"  [{i + 1}/{len(album['photos'])}] {rel_path} zaten yüklü — atlandı.")
+                continue
 
-    print("Taşıma bitti! Siteyi aç ve Memories bölümüne bak. ❤")
+            log(f"  [{i + 1}/{len(album['photos'])}] {rel_path} yükleniyor...")
+            upload_file(token, storage_path, local)
+            insert_photo(token, user_id, album_id, storage_path, caption, i)
+
+        if cover_storage_path and not (record and record["cover_path"]):
+            set_cover(token, album_id, cover_storage_path)
+            log("  Kapak fotoğrafı ayarlandı.")
+        log(f"'{album['title']}' tamamlandı. ✓\n")
+
+    log("Taşıma bitti! Siteyi aç ve Memories bölümüne bak. ❤")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SystemExit:
+        raise
+    except BaseException:
+        log("BEKLENMEDİK HATA:")
+        log(traceback.format_exc())
+        sys.exit(1)
