@@ -884,6 +884,28 @@
 
         @media (max-width: 768px) { * { cursor: auto !important; } #custom-cursor { display: none; } }
 
+        /* --- Mobil navigasyon ---
+           Dar ekranda uzun buton ("Tap to Stalk Me...") sıkışıp çirkin
+           görünmesin diye yazı/iç boşluk küçülür ve gerekirse alt satıra
+           kayar. Sadece telefon genişliğinde (≤540px) devreye girer;
+           masaüstü görünümü hiç değişmez.
+           NOT: Bunu kendi telefonunda bir teyit et — burada gerçek 375px'i
+           tam olarak önizleyemedim. */
+        @media (max-width: 540px) {
+            nav { padding: 10px 14px; }
+            .nav-logo { font-size: 0.95rem; }
+            .nav-links {
+                gap: 8px;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+            .nav-btn {
+                font-size: 0.55rem;
+                padding: 7px 11px;
+                letter-spacing: 1px;
+            }
+        }
+
         /* ============================================================
            ERİŞİLEBİLİRLİK (Accessibility)
            ============================================================ */

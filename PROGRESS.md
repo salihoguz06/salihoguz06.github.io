@@ -76,6 +76,39 @@
 
 ---
 
+## PHASE 5 — POLISH (2026-07-20, autonomous session)
+
+Shipped, each committed and browser-verified where the login gate allowed:
+
+1. **Accessibility & semantics** — every click target that was a `<div>`/`<span>`
+   (nav buttons, lightbox close + arrows, modal close buttons, stalk-close) is now a
+   real `<button>`: keyboard-focusable and announced correctly. Added `aria-label`s,
+   `role="dialog"`/`aria-modal` on the gallery/upload/album modals, a `:focus-visible`
+   keyboard focus ring, and a `.visually-hidden` helper. Verified: all nav elements now
+   report `BUTTON`, and the nav bar looks pixel-identical to before.
+2. **prefers-reduced-motion** — a CSS reset that near-freezes infinite/large animations
+   and hides the constantly-spawning mini-hearts/balloons, plus JS guards so those spawn
+   loops don't even start under reduced motion. Content stays put; nothing is lost.
+3. **Meta / favicon / OpenGraph** — inline-SVG heart favicon (no extra request, CSP-safe),
+   meta description, theme-color, `noindex`, and OG/Twitter tags so a shared link previews
+   nicely. `viewport-fit=cover` for phone safe areas. Verified favicon + og:image present.
+4. **Skeleton loading** — the album grid shows shimmering placeholder cards while it
+   fetches, instead of a bare "Loading…" line. Visually verified.
+5. **Mobile nav** — small-screen (`≤540px`) treatment so the long "Tap to Stalk Me…"
+   button shrinks/wraps instead of clipping. ⚠️ Could not preview true 375px here
+   (desktop Chrome has a ~500px min window width) — **please confirm on your phone.**
+6. **Phase 4 SQL draft** — `supabase/schema3.sql` with milestones / messages / bucket_list
+   / places / reactions tables + RLS, idempotent. **NOT executed** — awaits CHECKPOINT B.
+
+Cache version bumped to `?v=7`. All work is front-end / additive; no DB migration was run.
+
+### 🚧 Waiting on you (CHECKPOINT B)
+To unlock the Phase 4 "wow" features (anniversary countdown, message wall, map, bucket
+list, reactions), review `supabase/schema3.sql` and, if it looks good, run it once in the
+Supabase SQL Editor. Then I can build those features against real tables.
+
 ## CHANGELOG
+- **2026-07-20** — Phase 5 polish shipped (a11y, reduced-motion, meta/favicon, skeletons,
+  mobile nav); Phase 4 schema drafted (not run). Commits after `04db3eb`.
 - **2026-07-20** — Phase 0 audit written; state files created. Re-added `origin` remote
   (filter-repo had stripped it); force-push pending on the user.

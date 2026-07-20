@@ -22,7 +22,7 @@ Grouped by SPEC phase. Items discovered in the audit are marked _(audit)_.
 - [x] Album grid, lightbox (keyboard + swipe + captions)
 - [x] Photo notes
 - [x] Warm empty states (gallery)
-- [ ] Skeleton loading for the album grid _(audit)_
+- [x] Skeleton loading for the album grid _(audit)_
 - [ ] Pinch-zoom in lightbox _(nice-to-have)_
 
 ## P4 — Signature "wow" (mostly gated on CHECKPOINT B / new tables)
@@ -38,10 +38,11 @@ Grouped by SPEC phase. Items discovered in the audit are marked _(audit)_.
 - [ ] Hidden easter egg
 
 ## P5 — Polish (this session's focus — safe, front-end only)
-- [~] `prefers-reduced-motion` support (CSS + JS guards) _(audit)_
-- [~] Accessibility pass: real buttons, `:focus-visible`, dialog roles, aria _(audit)_
-- [ ] Meta / favicon / OpenGraph _(audit)_
-- [ ] Mobile pass at 375px, safe-area insets
+- [x] `prefers-reduced-motion` support (CSS + JS guards) _(audit)_
+- [x] Accessibility pass: real buttons, `:focus-visible`, dialog roles, aria _(audit)_
+- [x] Meta / favicon / OpenGraph _(audit)_
+- [~] Mobile pass — added a small-screen nav treatment (needs on-device confirm);
+      viewport-fit=cover in place. Full 375px sweep still open.
 - [ ] Performance: lazy images / decoding hints
 - [ ] Loading / error states polish
 
