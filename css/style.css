@@ -576,6 +576,26 @@
             color: #bbb;
             padding: 40px 0;
         }
+
+        /* Yükleme sırasında beliren "iskelet" kartlar — içerik gelene kadar
+           yumuşak bir parıltıyla bekler, boş ekran yerine dolu görünür. */
+        .skeleton-card {
+            height: 350px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: linear-gradient(
+                100deg,
+                rgba(255, 255, 255, 0.04) 30%,
+                rgba(255, 255, 255, 0.10) 50%,
+                rgba(255, 255, 255, 0.04) 70%
+            );
+            background-size: 200% 100%;
+            animation: skeletonShimmer 1.4s ease-in-out infinite;
+        }
+        @keyframes skeletonShimmer {
+            from { background-position: 200% 0; }
+            to { background-position: -200% 0; }
+        }
         .memories-actions {
             display: flex;
             gap: 12px;

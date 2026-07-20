@@ -58,12 +58,23 @@
 
     editToggle.addEventListener("click", () => setEditMode(!editMode));
 
+    // Yükleme sırasında boş ekran yerine parıldayan iskelet kartlar göster.
+    function renderSkeletons(count = 3) {
+        grid.innerHTML = "";
+        for (let i = 0; i < count; i++) {
+            const s = document.createElement("div");
+            s.className = "skeleton-card";
+            s.setAttribute("aria-hidden", "true");
+            grid.appendChild(s);
+        }
+    }
+
     // --- ALBÜMLERİ YÜKLE ---
     async function loadAlbums() {
         if (!window.sb) return;
         loaded = true;
 
-        grid.innerHTML = '<p class="gallery-status">Loading our memories...</p>';
+        renderSkeletons();
         futureGrid.innerHTML = "";
 
         const [{ data: albums, error }] = await Promise.all([
