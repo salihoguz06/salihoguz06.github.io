@@ -3,6 +3,11 @@
         const startDay = new Date("2025-04-26T04:00:00");
         const warsawFlightUnlockDate = new Date("2026-05-15T00:00:00");
 
+        // "Hareketi azalt" (prefers-reduced-motion) tercihi — animasyon
+        // kararlarında kullanılır. Aşağıdaki birçok yer buna bakar, o yüzden
+        // en başta tanımlıyoruz.
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
         // --- 1b. HEART TOUCH POPUP (mobile: :hover doesn't work reliably, so toggle a class on tap) ---
         const heartTrigger = document.getElementById('heartTrigger');
         const heartWrapper = heartTrigger ? heartTrigger.closest('.heart-wrapper') : null;
@@ -98,6 +103,51 @@
             document.getElementById("secs").innerText = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
         }, 1000);
 
+        // --- 4b. YIL DÖNÜMÜ GERİ SAYIMI ---
+        // Yeni tablo/DB gerekmez: her şey başlangıç tarihinden (startDay) hesaplanır.
+        // Bir sonraki 26 Nisan'a kalan günü ve kaçıncı yıl dönümü olduğunu gösterir;
+        // o gün geldiğinde kutlar (ve bir kez kalp yağmuru başlatır).
+        let anniversaryCelebrated = false;
+
+        function ordinal(n) {
+            const s = ["th", "st", "nd", "rd"];
+            const v = n % 100;
+            return n + (s[(v - 20) % 10] || s[v] || s[0]);
+        }
+
+        function updateAnniversaryCountdown() {
+            const el = document.getElementById("anniversaryCountdown");
+            if (!el) return;
+
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            // Bu yılın 26 Nisan'ı geçtiyse bir sonraki yıla geç.
+            let year = today.getFullYear();
+            let next = new Date(year, startDay.getMonth(), startDay.getDate());
+            if (next < today) {
+                year += 1;
+                next = new Date(year, startDay.getMonth(), startDay.getDate());
+            }
+
+            const daysLeft = Math.round((next - today) / 86400000);
+            const number = ordinal(year - startDay.getFullYear());
+
+            if (daysLeft === 0) {
+                el.innerText = `🎉 Happy ${number} anniversary, my love! 🎉`;
+                // Sadece bir kez, ve "hareketi azalt" kapalıysa kutla.
+                if (!anniversaryCelebrated && !prefersReducedMotion) {
+                    anniversaryCelebrated = true;
+                    for (let i = 0; i < 40; i++) setTimeout(spawnMiniHeart, i * 80);
+                }
+            } else {
+                el.innerText = `${daysLeft} day${daysLeft === 1 ? "" : "s"} until our ${number} anniversary 🥂`;
+            }
+        }
+
+        updateAnniversaryCountdown();
+        // Gün değişimini yakalamak için dakikada bir güncelle (ucuz).
+        setInterval(updateAnniversaryCountdown, 60000);
+
         // --- 5. GALLERY ---
         // Galeri artık Supabase'den dinamik yükleniyor → js/gallery.js
 
@@ -165,10 +215,8 @@
             // Uçuşu biten kalbi koddan sil (Siteyi kasmasın diye)
             setTimeout(() => heart.remove(), 12000); 
         }
-        // Kullanıcı "hareketi azalt" (prefers-reduced-motion) seçtiyse sürekli
-        // kalp üretmeyi hiç başlatma — CSS zaten gizler ama DOM'u da yormayalım.
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
+        // Kullanıcı "hareketi azalt" seçtiyse sürekli kalp üretmeyi hiç başlatma
+        // — CSS zaten gizler ama DOM'u da boş yere yormayalım.
         // Her 800 milisaniyede bir yeni kalp üret
         if (!prefersReducedMotion) setInterval(spawnMiniHeart, 800);
 

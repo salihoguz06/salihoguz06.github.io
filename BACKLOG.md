@@ -28,7 +28,8 @@ Grouped by SPEC phase. Items discovered in the audit are marked _(audit)_.
 ## P4 — Signature "wow" (mostly gated on CHECKPOINT B / new tables)
 - [x] "Days together" animated counter
 - [x] "Reasons I love you" random-reveal card
-- [ ] Anniversary countdown + celebration animation
+- [x] Anniversary countdown (computed from start date; celebrates on the day) —
+      no DB needed. Celebration on the actual day still unpreviewable here.
 - [ ] "On this day" memories
 - [ ] Animated "our story" timeline
 - [ ] Map of places

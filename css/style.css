@@ -213,6 +213,18 @@
         .counter-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
         .counter-value { font-size: clamp(1.2rem, 5vw, 2.2rem); color: var(--primary-red); font-family: 'Playfair Display', serif; font-weight: 700; }
 
+        /* Yıl dönümü geri sayımı — sayacın hemen altında, zarif bir satır. */
+        .anniversary-countdown {
+            margin-top: 22px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+            color: var(--soft-pink);
+            letter-spacing: 0.5px;
+            min-height: 1.2em;
+            text-shadow: 0 0 12px rgba(248, 200, 220, 0.25);
+        }
+
         /* Folders */
         .folders-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; max-width: 1100px; margin-top: 40px; }
         .folder-card { background: var(--glass); border-radius: 20px; height: 350px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; pointer-events: auto !important; }
