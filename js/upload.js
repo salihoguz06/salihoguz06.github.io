@@ -6,6 +6,8 @@
     const modal = document.getElementById("uploadModal");
     const albumSelect = document.getElementById("uploadAlbum");
     const newAlbumInput = document.getElementById("newAlbumTitle");
+    const newAlbumUnlock = document.getElementById("newAlbumUnlock");
+    const newAlbumUnlockLabel = document.getElementById("newAlbumUnlockLabel");
     const fileInput = document.getElementById("uploadFiles");
     const chooseBtn = document.getElementById("chooseFilesBtn");
     const listEl = document.getElementById("uploadList");
@@ -47,6 +49,9 @@
         statusEl.innerText = "";
         newAlbumInput.hidden = true;
         newAlbumInput.value = "";
+        newAlbumUnlock.hidden = true;
+        newAlbumUnlock.value = "";
+        newAlbumUnlockLabel.hidden = true;
         fileInput.value = "";
         updateStartBtn();
     }
@@ -59,7 +64,10 @@
     }
 
     albumSelect.addEventListener("change", () => {
-        newAlbumInput.hidden = albumSelect.value !== "__new__";
+        const isNew = albumSelect.value === "__new__";
+        newAlbumInput.hidden = !isNew;
+        newAlbumUnlock.hidden = !isNew;
+        newAlbumUnlockLabel.hidden = !isNew;
         updateStartBtn();
     });
     newAlbumInput.addEventListener("input", updateStartBtn);
@@ -149,9 +157,13 @@
 
             if (albumId === "__new__") {
                 statusEl.innerText = "Creating album...";
+                const newAlbum = { title: newAlbumInput.value.trim() };
+                if (newAlbumUnlock.value) {
+                    newAlbum.unlock_at = new Date(newAlbumUnlock.value + "T00:00:00").toISOString();
+                }
                 const { data: created, error } = await sb
                     .from("albums")
-                    .insert({ title: newAlbumInput.value.trim() })
+                    .insert(newAlbum)
                     .select()
                     .single();
                 if (error) throw error;

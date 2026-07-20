@@ -105,16 +105,10 @@
         function checkWarsawFlight() {
             const now = new Date();
             if (now < warsawFlightUnlockDate) {
-                alert("Signal Weak, My Love! 🛸\n\nAccess to May 16th Warsaw flight tracking will open on May 15th. Until then, it stays locked!");
+                showLoveDialog("Signal Weak, My Love! 🛸", "Access to May 16th Warsaw flight tracking will open on May 15th. Until then, it stays locked!");
             } else {
                 window.open("https://www.google.com/search?q=Warsaw+Flight+Tracking+16+May+2026", "_blank", "noopener,noreferrer");
             }
-        }
-
-        function checkUnlockDate(date, title) {
-            const diff = new Date(date) - new Date();
-            if(diff <= 0) alert(title + " is now unlocked!");
-            else alert("Be patient, my love... \n\n" + title + " will unlock in " + Math.ceil(diff/86400000) + " days. ❤️");
         }
 
         // --- 8. BALLOONS, SCRATCH & STALK ---
@@ -408,9 +402,9 @@ audioEl.addEventListener("play", () => vinylBtn.classList.add("playing"));
                 setTimeout(spawnMiniHeart, i * 80); 
             }
 
-            // 3. (Opsiyonel) Ekrana tatlı bir bildirim çıkar
+            // 3. Ekrana tatlı bir bildirim çıkar
             setTimeout(() => {
-                alert("Ömür Boyu Sarılma Üyeliğin Aktif Edildi Sevgilim! 🎉❤");
+                showLoveDialog("Congratulations! 🎉", "Ömür Boyu Sarılma Üyeliğin Aktif Edildi Sevgilim! ❤");
             }, 1200);
         }
 
