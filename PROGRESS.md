@@ -108,6 +108,7 @@ list, reactions), review `supabase/schema3.sql` and, if it looks good, run it on
 Supabase SQL Editor. Then I can build those features against real tables.
 
 ## CHANGELOG
+- **2026-07-20** — Anniversary countdown shipped (P4, no DB); README added (P6).
 - **2026-07-20** — Phase 5 polish shipped (a11y, reduced-motion, meta/favicon, skeletons,
   mobile nav); Phase 4 schema drafted (not run). Commits after `04db3eb`.
 - **2026-07-20** — Phase 0 audit written; state files created. Re-added `origin` remote
