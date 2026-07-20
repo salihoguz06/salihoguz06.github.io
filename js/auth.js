@@ -18,10 +18,15 @@
         logoutBtn.hidden = true;
     }
 
+    // Diğer dosyalar (gallery.js) bu bayrağa bakarak olayı kaçırıp
+    // kaçırmadıklarını anlar — olay onlar dinlemeye başlamadan da tetiklenebilir.
+    window.saUnlocked = false;
+
     function unlock() {
         overlay.hidden = true;
         document.body.classList.remove("locked");
         logoutBtn.hidden = false;
+        window.saUnlocked = true;
         document.dispatchEvent(new CustomEvent("sa:unlocked"));
     }
 

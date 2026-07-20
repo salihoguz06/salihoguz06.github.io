@@ -173,7 +173,7 @@
 const playlist = [
     { 
         src: "müzik/zeki-muren-simdi-uzaklardasin_Mp3.mp3", // Buraya 1. MP3 linki
-        title: "Şimdi Uzaklardasın", 
+        title: "Şimdi Uzaklardasın (Now You Are Far Away)",
         meaning: "Symbol of our sadness after I leave istanbul in that cursed july." 
     },
     { 
@@ -183,12 +183,12 @@ const playlist = [
     },
     { 
         src: "müzik/Duman-Kopru-Alti.mp3", // Buraya 3. MP3 linki
-        title: "Köprü Altı - Duman", 
+        title: "Köprü Altı (Under the Bridge) - Duman",
         meaning: "Such a duman classic of our relationship" 
     },
     { 
         src: "müzik/Nilufer-Son-Arzum.mp3", // Buraya 3. MP3 linki
-        title: "My Last Wish", 
+        title: "Son Arzum (My Last Wish) - Nilüfer",
         meaning: "If they ask me, what my last wish is I hope they'll look into my eyes and understand everything." 
     }
 ];
@@ -404,7 +404,7 @@ audioEl.addEventListener("play", () => vinylBtn.classList.add("playing"));
 
             // 3. Ekrana tatlı bir bildirim çıkar
             setTimeout(() => {
-                showLoveDialog("Congratulations! 🎉", "Ömür Boyu Sarılma Üyeliğin Aktif Edildi Sevgilim! ❤");
+                showLoveDialog("Congratulations! 🎉", "Your Lifetime Hugging Membership is now active, my love! ❤");
             }, 1200);
         }
 

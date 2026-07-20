@@ -136,8 +136,8 @@
             xhr.onload = () =>
                 xhr.status >= 200 && xhr.status < 300
                     ? resolve()
-                    : reject(new Error(`Yükleme hatası ${xhr.status}: ${xhr.responseText}`));
-            xhr.onerror = () => reject(new Error("Ağ hatası"));
+                    : reject(new Error(`Upload failed (${xhr.status}): ${xhr.responseText}`));
+            xhr.onerror = () => reject(new Error("Network error — check your connection."));
             xhr.send(file);
         });
     }
@@ -150,7 +150,7 @@
         try {
             const { data: sessionData } = await sb.auth.getSession();
             const session = sessionData.session;
-            if (!session) throw new Error("Oturum bulunamadı — sayfayı yenileyip tekrar giriş yap.");
+            if (!session) throw new Error("Session expired — please refresh the page and sign in again.");
 
             let albumId = albumSelect.value;
             let albumIsNew = false;
