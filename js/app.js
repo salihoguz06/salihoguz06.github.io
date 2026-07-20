@@ -165,8 +165,12 @@
             // Uçuşu biten kalbi koddan sil (Siteyi kasmasın diye)
             setTimeout(() => heart.remove(), 12000); 
         }
+        // Kullanıcı "hareketi azalt" (prefers-reduced-motion) seçtiyse sürekli
+        // kalp üretmeyi hiç başlatma — CSS zaten gizler ama DOM'u da yormayalım.
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
         // Her 800 milisaniyede bir yeni kalp üret
-        setInterval(spawnMiniHeart, 800);
+        if (!prefersReducedMotion) setInterval(spawnMiniHeart, 800);
 
 
         // --- 11. PLAK VE ÇALMA LİSTESİ (HİKAYELİ KUTU) ---
@@ -398,8 +402,11 @@ audioEl.addEventListener("play", () => vinylBtn.classList.add("playing"));
             setTimeout(() => canvas.style.display = "none", 1000); 
 
             // 2. Kutlama: Senin minik kalpleri konfeti gibi art arda fırlat
-            for (let i = 0; i < 40; i++) {
-                setTimeout(spawnMiniHeart, i * 80); 
+            // (hareketi azalt seçiliyse konfetiyi atla)
+            if (!prefersReducedMotion) {
+                for (let i = 0; i < 40; i++) {
+                    setTimeout(spawnMiniHeart, i * 80);
+                }
             }
 
             // 3. Ekrana tatlı bir bildirim çıkar

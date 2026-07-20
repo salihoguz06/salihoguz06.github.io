@@ -863,3 +863,62 @@
         }
 
         @media (max-width: 768px) { * { cursor: auto !important; } #custom-cursor { display: none; } }
+
+        /* ============================================================
+           ERİŞİLEBİLİRLİK (Accessibility)
+           ============================================================ */
+
+        /* Eskiden <div>/<span> olan tıklanabilir öğeler artık gerçek <button>.
+           Görünümleri değişmesin diye tarayıcının varsayılan buton stilini
+           (arka plan, çerçeve, iç boşluk, yazı tipi) nötrleyip metnini koruyoruz. */
+        .nav-btn { font-family: 'Raleway', sans-serif; }
+        .close-modal, .gallery-btn {
+            font-family: inherit;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        /* Klavyeyle gezenler için görünür bir odak halkası. Fareyle tıklayınca
+           çıkmaz (:focus-visible sadece klavye/erişim için tetiklenir). */
+        a:focus-visible,
+        button:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 2px solid var(--soft-pink);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+        #login-form input:focus-visible {
+            outline: 2px solid var(--soft-pink);
+            outline-offset: 2px;
+        }
+
+        /* Ekranda okunması gereken ama görünmesi gerekmeyen metin (ör. "Menu"). */
+        .visually-hidden {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* ============================================================
+           HAREKETİ AZALT (prefers-reduced-motion)
+           Telefonda/işletim sisteminde "hareketi azalt" açıksa, sonsuz ve
+           büyük animasyonları neredeyse kapatırız. İçerik yerinde kalır,
+           sadece kıpırdamaz. Pil ve baş dönmesi için önemli.
+           ============================================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+            /* Salt dekoratif, sürekli üretilen öğeleri tamamen gizle. */
+            .mini-heart,
+            .balloon { display: none !important; }
+        }
