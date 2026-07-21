@@ -27,6 +27,9 @@
     <meta name="twitter:image" content="https://salihoguz06.github.io/assets/arkaplan.jpeg">
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Raleway:wght@200;400;600&display=swap" rel="stylesheet">
+    <!-- Leaflet: "Places we've been" haritası için hafif harita kütüphanesi.
+         Karoları OpenStreetMap'ten gelir, API anahtarı gerektirmez. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
     <!-- ?v=... sürüm etiketi: kodu her güncellediğinde bu sayıyı artır ki
          tarayıcılar eski dosyayı önbellekten göstermesin. -->
     <link rel="stylesheet" href="css/style.css?v=8">
@@ -202,6 +205,28 @@
         </div>
     </div>
 
+    <!-- Places We've Been (map) -->
+    <section id="placesSection">
+        <h2 class="hero-title" style="font-size: 2rem;">Places We've Been</h2>
+        <p style="font-style: italic; color: #bbb; margin-bottom: 25px; max-width: 520px;">Every pin is a memory with a place. Look how far our little world stretches. 🌍</p>
+        <div class="places-box">
+            <div id="placesMap"></div>
+            <div class="places-toolbar">
+                <button class="nav-btn" id="placesAddToggle" type="button" aria-pressed="false" style="padding: 10px 24px; font-size: 0.7rem;">＋ Add a Place</button>
+                <span class="places-hint" id="placesHint"></span>
+            </div>
+            <div class="places-form" id="placesForm" hidden>
+                <input type="text" id="placeTitle" placeholder="Where is this? (e.g. Warsaw Old Town)" maxlength="120">
+                <input type="date" id="placeDate" aria-label="When we visited">
+                <input type="text" id="placeNote" placeholder="A memory from here... (optional)" maxlength="240">
+                <div class="places-form-actions">
+                    <button class="send-btn" id="placeSave" type="button">Drop the Pin ❤</button>
+                    <button class="love-dialog-cancel" id="placeCancel" type="button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Message Wall -->
     <section id="wallSection">
         <h2 class="hero-title" style="font-size: 2rem;">Our Little Wall</h2>
@@ -281,6 +306,7 @@
     <audio id="bgMusic"></audio>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/config.js?v=8"></script>
     <script src="js/supabase.js?v=8"></script>
     <script src="js/auth.js?v=8"></script>
@@ -291,6 +317,7 @@
     <script src="js/messages.js?v=8"></script>
     <script src="js/bucket.js?v=8"></script>
     <script src="js/timeline.js?v=8"></script>
+    <script src="js/places.js?v=8"></script>
     <script src="js/app.js?v=8"></script>
 </body>
 </html>
