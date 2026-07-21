@@ -242,6 +242,8 @@
 
         refreshPhotoTools();
         loadNotes(photo.id);
+        // Tepkiler modülüne "şu fotoğraf açıldı" sinyalini yolla (reactions.js dinler).
+        document.dispatchEvent(new CustomEvent("sa:photo", { detail: { photoId: photo.id } }));
     }
 
     function refreshPhotoTools() {

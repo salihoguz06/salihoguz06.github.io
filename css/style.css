@@ -1194,3 +1194,40 @@
             .bucket-input-row { flex-direction: column; }
             .bucket-input-row .send-btn { width: 100%; }
         }
+
+        /* ============================================================
+           FAZ 4 — FOTOĞRAF TEPKİLERİ (lightbox içi emoji)
+           ============================================================ */
+        .reaction-bar {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .reaction-bar[hidden] { display: none; }
+        .reaction-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            padding: 6px 12px;
+            cursor: pointer !important;
+            font-family: 'Raleway', sans-serif;
+            transition: all 0.2s ease;
+        }
+        .reaction-btn:hover { transform: translateY(-2px) scale(1.05); border-color: var(--soft-pink); }
+        .reaction-btn.reacted {
+            background: rgba(248, 200, 220, 0.18);
+            border-color: var(--soft-pink);
+            box-shadow: 0 0 10px rgba(248, 200, 220, 0.3);
+        }
+        .reaction-emoji { font-size: 1.1rem; line-height: 1; }
+        .reaction-count {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--soft-pink);
+            min-width: 8px;
+        }
