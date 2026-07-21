@@ -107,6 +107,22 @@
         </div>
     </section>
 
+    <!-- Our Story Timeline -->
+    <section id="timelineSection">
+        <h2 class="hero-title" style="font-size: 2rem;">Our Story</h2>
+        <p id="onThisDay" class="on-this-day" aria-live="polite" hidden></p>
+        <div class="timeline-box">
+            <div class="timeline-list" id="timelineList"></div>
+            <button class="nav-btn" id="timelineAddToggle" type="button" aria-expanded="false" style="margin-top: 22px; padding: 12px 30px; font-size: 0.75rem;">＋ Add a Moment</button>
+            <div class="timeline-form" id="timelineForm" hidden>
+                <input type="text" id="milestoneTitle" placeholder="What happened? (e.g. The day we met)" maxlength="120">
+                <input type="date" id="milestoneDate" aria-label="Date of this moment">
+                <input type="text" id="milestoneNote" placeholder="A little detail... (optional)" maxlength="240">
+                <button class="send-btn" id="milestoneSave" type="button">Save This Moment ❤</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Gallery & Future -->
     <section>
         <h2 class="hero-title" style="font-size: 2rem;">Memories</h2>
@@ -274,6 +290,7 @@
     <script src="js/upload.js?v=8"></script>
     <script src="js/messages.js?v=8"></script>
     <script src="js/bucket.js?v=8"></script>
+    <script src="js/timeline.js?v=8"></script>
     <script src="js/app.js?v=8"></script>
 </body>
 </html>
