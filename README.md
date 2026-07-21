@@ -16,14 +16,19 @@ js/
   auth.js           → giriş kapısı (oturum yoksa siteyi kilitler)
   dialog.js         → alert/confirm yerine cam estetikli diyaloglar
   gallery.js        → albüm/fotoğraf çekme, lightbox, düzenleme modu
+  reactions.js      → lightbox'ta fotoğraflara emoji tepkileri (Faz 4)
   upload.js         → fotoğraf yükleme (ilerleme çubuğu + doğrulama)
+  messages.js       → mesaj duvarı — birbirinize bıraktığınız notlar (Faz 4)
+  bucket.js         → ortak yapılacaklar listesi (Faz 4)
+  timeline.js       → "Our Story" zaman çizelgesi + "on this day" (Faz 4)
+  places.js         → gittiğiniz yerler haritası, Leaflet ile (Faz 4)
   app.js            → sayaç, yıl dönümü geri sayımı, müzik, kazı-kazan vb.
 assets/             → arka plan fotoğrafı
 müzik/              → çalar için mp3'ler
 supabase/
   schema.sql        → temel tablolar + RLS (bir kez çalıştırıldı)
   schema2.sql       → Faz 3: kilit tarihi + notlar (çalıştırıldı)
-  schema3.sql       → Faz 4 TASLAK (henüz ÇALIŞTIRILMADI — onayını bekliyor)
+  schema3.sql       → Faz 4 tabloları: milestones/messages/bucket_list/places/reactions (çalıştırıldı)
   migrate.py        → eski 38 fotoğrafı Supabase'e taşıyan betik
   KURULUM.md        → Supabase kurulum rehberi (adım adım)
 PROGRESS.md         → yapılanların günlüğü   BACKLOG.md → yapılacaklar
@@ -62,13 +67,18 @@ git push origin main
 
 Birkaç dakika içinde GitHub siteyi yeniden derler.
 
-> **Önbellek notu:** `index.html` içindeki CSS/JS bağlantılarında `?v=8` gibi bir
-> sürüm etiketi var. Kodu her güncellediğinde bu sayıyı artır (ör. `?v=9`). Yoksa
+> **Önbellek notu:** `index.html` içindeki CSS/JS bağlantılarında `?v=9` gibi bir
+> sürüm etiketi var. Kodu her güncellediğinde bu sayıyı artır (ör. `?v=10`). Yoksa
 > tarayıcılar (özellikle telefonda) eski dosyayı önbellekten göstermeye devam edebilir.
 
-## Sıradaki adım — Faz 4 (onay bekliyor)
+## Faz 4 özellikleri (kuruldu ✅)
 
-`supabase/schema3.sql` yeni "wow" özellikleri için tablolar içerir (yıl dönümü verisi,
-mesaj duvarı, harita, yapılacaklar listesi, tepkiler). **Henüz çalıştırılmadı.** Gözden
-geçirip beğenirsen Supabase → SQL Editor'de bir kez çalıştır; sonra bu özellikler
-gerçek tablolarla inşa edilebilir.
+`supabase/schema3.sql` çalıştırıldı ve şu "wow" özellikleri gerçek tablolarla inşa edildi:
+
+- **💌 Mesaj duvarı** — birbirinize kalıcı notlar (`messages`)
+- **✅ Ortak yapılacaklar listesi** — işaretleyince kutlar (`bucket_list`)
+- **💞 Fotoğraf tepkileri** — lightbox'ta emoji (`reactions`)
+- **📖 "Our Story" zaman çizelgesi** + "on this day" şeridi (`milestones`)
+- **🗺️ Gittiğiniz yerler haritası** — Leaflet + OpenStreetMap (`places`)
+
+Kalanlar: anı slayt gösterisi, gizli "easter egg".

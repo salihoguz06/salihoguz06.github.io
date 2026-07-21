@@ -107,7 +107,44 @@ To unlock the Phase 4 "wow" features (anniversary countdown, message wall, map, 
 list, reactions), review `supabase/schema3.sql` and, if it looks good, run it once in the
 Supabase SQL Editor. Then I can build those features against real tables.
 
+## PHASE 4 — SIGNATURE "WOW" (2026-07-21, CHECKPOINT B cleared)
+
+`schema3.sql` was reviewed and run in Supabase → the five new tables are live.
+Built five features against them, each its own IIFE module and its own commit,
+each matching the existing dark/glass aesthetic and graceful-degrade pattern
+(if a table is missing the section quietly hides). All English UI, Turkish
+code comments. Verified end-to-end in Chrome against the real session (a saved
+login persisted in the browser) — every section renders and the Leaflet map
+tiles load. No test rows were written to the real database.
+
+1. **💌 Message wall** (`messages`) — persistent love notes between the two of
+   you. Read all, post, delete your own (RLS-enforced); your notes are pink-
+   accented. `js/messages.js`, section between gallery and wishes.
+2. **✅ Shared bucket list** (`bucket_list`) — dreams to chase together; check
+   one off and a little hearts burst fires. Undone items float to top; a
+   "N of M done together" progress line. `js/bucket.js`.
+3. **💞 Photo reactions** (`reactions`) — emoji reactions inside the lightbox;
+   tap to react, tap again to undo; per-emoji counts. Decoupled from
+   `gallery.js` via a `sa:photo` CustomEvent. `js/reactions.js`.
+4. **📖 "Our Story" timeline** (`milestones`) — a vertical, dated timeline with
+   a flowing line; add/remove moments. Plus an **"On this day"** banner that
+   appears when today matches a milestone's month/day ("N years ago today").
+   `js/timeline.js`, placed before Memories as a narrative lead-in.
+5. **🗺️ "Places We've Been" map** (`places`) — Leaflet + OpenStreetMap, heart
+   pins with title/date/note popups. Arm "Add a Place", tap the map, name it,
+   drop the pin. Auto-fits to all pins; dark-themed tiles/popups; degrades if
+   Leaflet is unavailable. `js/places.js`; Leaflet loaded from CDN (GitHub
+   Pages, not CSP-restricted like an artifact).
+
+Cache version bumped `?v=8` → `?v=9` (style.css and gallery.js content changed
+under the same tag, so a bump is required for phones to refetch).
+
+Still open in P4: memory reel slideshow, hidden easter egg.
+
 ## CHANGELOG
+- **2026-07-21** — Phase 4 shipped: message wall, bucket list, photo reactions,
+  "Our Story" timeline + "on this day", places map (Leaflet). schema3.sql run.
+  Cache bumped to `?v=9`. Verified in-browser against the live session.
 - **2026-07-20** — Anniversary countdown shipped (P4, no DB); README added (P6).
 - **2026-07-20** — Phase 5 polish shipped (a11y, reduced-motion, meta/favicon, skeletons,
   mobile nav); Phase 4 schema drafted (not run). Commits after `04db3eb`.

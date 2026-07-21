@@ -16,7 +16,7 @@ Grouped by SPEC phase. Items discovered in the audit are marked _(audit)_.
 - [x] Schema + RLS (albums, photos, photo_notes, profiles)
 - [x] Private Storage bucket + upload flow with progress + validation
 - [x] Dynamic fetches (no hardcoded gallery)
-- [ ] Extend schema for Phase 4 features — **gated: CHECKPOINT B**
+- [x] Extend schema for Phase 4 features — **schema3.sql run (CHECKPOINT B cleared)**
 
 ## P3 — Core interactivity
 - [x] Album grid, lightbox (keyboard + swipe + captions)
@@ -30,11 +30,12 @@ Grouped by SPEC phase. Items discovered in the audit are marked _(audit)_.
 - [x] "Reasons I love you" random-reveal card
 - [x] Anniversary countdown (computed from start date; celebrates on the day) —
       no DB needed. Celebration on the actual day still unpreviewable here.
-- [ ] "On this day" memories
-- [ ] Animated "our story" timeline
-- [ ] Map of places
-- [ ] Message wall / guestbook
-- [ ] Shared bucket list
+- [x] "On this day" memories — banner in the timeline when today matches a milestone
+- [x] Animated "our story" timeline — milestones table, add/remove, flowing line
+- [x] Map of places — Leaflet + OSM, heart pins, tap-to-add, popups (places table)
+- [x] Message wall / guestbook — messages table, own-note delete, pink accent
+- [x] Shared bucket list — bucket_list table, check off + hearts celebration
+- [x] Photo reactions in the lightbox — reactions table, emoji toggle + counts
 - [ ] Memory reel slideshow
 - [ ] Hidden easter egg
 
